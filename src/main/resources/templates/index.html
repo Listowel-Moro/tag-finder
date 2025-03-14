@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Amalitech Tag Finder</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #3b8d99, #6b1e5b);
+            color: #ffffff;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            border: none;
+            height: 300px;
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card-img-top {
+            object-fit: cover;
+            height: 250px;
+        }
+        .btn-danger {
+            background-color: #d9534f;
+            color: white;
+            width: 100%;
+            border-radius: 0 0 5px 5px;
+            padding: 10px;
+            border: none;
+        }
+        .btn-danger:hover {
+            background-color: #c9302c;
+        }
+        .amali-btn {
+            background-color: #FF5A00;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .amali-btn:hover {
+            background-color: #FF5A00;
+            background-opacity: 0.8;
+        }
+        .upload-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+<div class="container fade-in">
+    <h1 class="mb-4 text-4xl font-bold">Amalitech Tag Finder</h1>
+
+    <!-- Upload Form -->
+    <div class="upload-section mb-4">
+        <form th:action="@{/upload}" method="post" enctype="multipart/form-data">
+            <input type="file" accept="image/*" name="image" class="form-control mb-2" required alt="">
+            <button type="submit" class="btn amali-btn">Upload Tag Image</button>
+        </form>
+    </div>
+
+    <!-- Display Uploaded Images -->
+    <div class="row">
+        <div class="col-md-3 mb-4 fade-in" th:each="imageKey : ${images}">
+            <div class="card">
+                <img th:src="@{'https://tag-finder-s3.s3.amazonaws.com/' + ${imageKey}}" class="card-img-top" alt="Image" />
+
+                <div class="card-body">
+                    <form th:action="@{/delete-image}" method="post">
+                        <input type="hidden" name="imageKey" th:value="${imageKey}">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-20">
+        <a th:if="${nextToken}" th:href="@{/(token=${nextToken})}" class="amali-btn px-6 py-3 text-white text-lg rounded-none shadow-md hover:opacity-85 transition duration-300 ease-in-out">Load Next Page →</a>
+    </div>
+</div>
+</body>
+</html>

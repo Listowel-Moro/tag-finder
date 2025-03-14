@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Uploaded Image</title>
+</head>
+<body>
+<h2>Uploaded Image</h2>
+
+<div th:if="${imageData}">
+    <img th:src="'data:image/png;base64,' + ${imageData}" alt="Uploaded Image" width="300px">
+</div>
+
+<a href="/">Upload Another Image</a>
+</body>
+</html>
