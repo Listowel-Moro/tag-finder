@@ -1,0 +1,37 @@
+{
+  "family": "tag-finder-task",
+  "executionRoleArn": "arn:aws:iam::522814710448:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::522814710448:role/S3AccessRole",
+  "containerDefinitions": [
+    {
+      "name": "task-finder-container",
+      "image": "public.ecr.aws/z2w7p2s7/labs:latest",
+      "memory": 2048,
+      "cpu": 4096,
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 8080
+        }
+      ],
+      "environment": [
+        {
+          "name": "DEPLOYMENT_VERSION",
+          "value": "123456789"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/tag-finder-log-group",
+          "awslogs-region": "us-west-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ],
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "memory": "2048",
+  "cpu": "4096"
+}
