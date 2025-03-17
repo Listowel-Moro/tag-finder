@@ -42,7 +42,7 @@ jobs:
         run: |
           docker push public.ecr.aws/z2w7p2s7/labs:latest
           
-      # Step 8: Update `taskdef.json` with a new version (forces ECS to update task definition)
+      # Step 8: Update taskdef.json with a new version (forces ECS to update task definition)
       - name: Update Task Definition
         run: |
           sed -i 's|"imageUri": "public.ecr.aws/z2w7p2s7/labs:latest"|"imageUri": "public.ecr.aws/z2w7p2s7/labs:latest"|' deploy/taskdef.json
