@@ -4,7 +4,7 @@
   "taskRoleArn": "arn:aws:iam::522814710448:role/ECSS3role",
   "containerDefinitions": [
     {
-      "name": "task-finder-container",
+      "name": "tag-finder-container",
       "image": "public.ecr.aws/z2w7p2s7/labs:latest",
       "memory": 2048,
       "cpu": 4096,
