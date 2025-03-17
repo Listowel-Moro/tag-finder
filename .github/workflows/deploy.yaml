@@ -45,7 +45,7 @@ jobs:
       # Step 8: Update `taskdef.json` with a new version (forces ECS to update task definition)
       - name: Update Task Definition
         run: |
-          sed -i 's|"imageUri": "public.ecr.aws/z2w7p2s7/labs:latest"|"imageUri": "public.ecr.aws/z2w7p2s7/labs:latest",' deploy/taskdef.json
+          sed -i 's|"imageUri": "public.ecr.aws/z2w7p2s7/labs:latest"|"imageUri": "public.ecr.aws/z2w7p2s7/labs:latest"|' deploy/taskdef.json
           sed -i 's|"value": "123456789"|"value": "'$(date +%s)'"|' deploy/taskdef.json
 
       # Step 9: Upload Task Definition & AppSpec to S3
