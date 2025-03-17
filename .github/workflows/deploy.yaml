@@ -54,7 +54,7 @@ jobs:
           aws s3 cp deploy/taskdef.json s3://${{ secrets.S3_BUCKET }}/taskdef.json
           aws s3 cp deploy/appspec.yaml s3://${{ secrets.S3_BUCKET }}/appspec.yaml
 
-      # Step 10: Trigger AWS CodePipeline to start deployment process
-      - name: Start AWS CodePipeline Deployment
-        run: |
-          aws codepipeline start-pipeline-execution --name ${{ secrets.CODEPIPELINE_NAME }}
+#      # Step 10: Trigger AWS CodePipeline to start deployment process
+#      - name: Start AWS CodePipeline Deployment
+#        run: |
+#          aws codepipeline start-pipeline-execution --name ${{ secrets.CODEPIPELINE_NAME }}
