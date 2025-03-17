@@ -1,7 +1,7 @@
 {
   "family": "tag-finder-task",
   "executionRoleArn": "arn:aws:iam::522814710448:role/ecsTaskExecutionRole",
-  "taskRoleArn": "arn:aws:iam::522814710448:role/S3AccessRole",
+  "taskRoleArn": "arn:aws:iam::522814710448:role/ECSS3role",
   "containerDefinitions": [
     {
       "name": "task-finder-container",
