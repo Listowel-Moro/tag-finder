@@ -5,6 +5,6 @@ Resources:
       Properties:
         TaskDefinition: <TASK_DEFINITION>
         LoadBalancerInfo:
-          ContainerName: "tag-f"
+          ContainerName: "tag-finder-container"
           ContainerPort: 8080
         PlatformVersion: "LATEST"
