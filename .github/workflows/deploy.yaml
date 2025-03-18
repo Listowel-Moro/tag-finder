@@ -51,8 +51,8 @@ jobs:
       # Step 9: Upload Task Definition & AppSpec to S3
       - name: Upload Task Definition & AppSpec to S3
         run: |
-          aws s3 cp deploy/taskdef.json s3://${{ secrets.S3_BUCKET }}/taskdef.json
-          aws s3 cp deploy/appspec.yaml s3://${{ secrets.S3_BUCKET }}/appspec.yaml
+          aws s3 cp deploy/taskdef.json s3://${{ secrets.S3_BUCKET }}/deploy-files/taskdef.json
+          aws s3 cp deploy/appspec.yaml s3://${{ secrets.S3_BUCKET }}/deploy-files/appspec.yaml
 
 #      # Step 10: Trigger AWS CodePipeline to start deployment process
 #      - name: Start AWS CodePipeline Deployment
