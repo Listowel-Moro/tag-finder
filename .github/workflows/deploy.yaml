@@ -49,10 +49,22 @@ jobs:
           sed -i 's|"value": "123456789"|"value": "'$(date +%s)'"|' deploy/taskdef.json
 
       # Step 9: Upload Task Definition & AppSpec to S3
-      - name: Upload Task Definition & AppSpec to S3
+      - name: Package and Upload Task Definition & AppSpec to S3
         run: |
-          aws s3 cp deploy/taskdef.json s3://${{ secrets.S3_BUCKET }}/deploy-files/taskdef.json
-          aws s3 cp deploy/appspec.yaml s3://${{ secrets.S3_BUCKET }}/deploy-files/appspec.yaml
+          # Create a directory for the files
+          mkdir -p deployment-package
+          
+          # Copy files to the directory
+          cp deploy/taskdef.json deployment-package/
+          cp deploy/appspec.yaml deployment-package/
+          
+          # Zip the files
+          cd deployment-package
+          zip -r ../deployment-package.zip .
+          cd ..
+          
+          # Upload the zip file to S3
+          aws s3 cp deployment-package.zip s3://${{ secrets.S3_BUCKET }}/deployment-package.zip
 
 #      # Step 10: Trigger AWS CodePipeline to start deployment process
 #      - name: Start AWS CodePipeline Deployment
