@@ -6,8 +6,8 @@
     {
       "name": "tag-finder-container",
       "image": "public.ecr.aws/z2w7p2s7/labs:latest",
-      "memory": 2048,
-      "cpu": 4096,
+      "memory": "4096",
+      "cpu": "2048",
       "essential": true,
       "portMappings": [
         {
@@ -24,6 +24,6 @@
   ],
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
-  "memory": "2048",
-  "cpu": "4096"
+  "memory": "4096",
+  "cpu": "2048"
 }
