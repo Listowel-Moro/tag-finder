@@ -24,6 +24,6 @@
   ],
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
-  "memory": 4096,
-  "cpu": 2048
+  "memory": "4096",
+  "cpu": "2048"
 }
