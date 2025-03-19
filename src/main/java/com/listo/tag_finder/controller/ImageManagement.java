@@ -24,7 +24,7 @@ public class ImageManagement {
     public String getImages(@RequestParam(value = "token", required = false) String token, Model model) {
         String continuationToken = token;
 
-        List<Object> response = s3Service.listObjects("tag-finder-s3", continuationToken, "3");
+        List<Object> response = s3Service.listObjects("tag-finder-s3", continuationToken, "9");
         List<String> images = (List<String>) response.get(0);
 
         continuationToken = (String) response.get(1);
